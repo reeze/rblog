@@ -1,0 +1,31 @@
+homepage:
+  url: /
+  params: {controller: home, action: index}
+  
+# View the post
+view_post:
+  url: /:year/:month/:day/:slug
+  params: {controller: blog, action: show}
+
+archive_index:
+  url: /archive
+  params: {controller: blog, action: archive}
+
+feed:
+  url: /feed.:format
+  params: {controller: blog, action: index}
+  
+page:
+  url: /page/:slug
+  params: {controller: page, action: show}
+
+document:
+  url: /doc/:page
+  params: {controller: document, action: show}
+
+default_index:
+  url: /:controller
+  params: {action: index}
+
+default:
+  url: /:controller/:action
