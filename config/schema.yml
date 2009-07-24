@@ -3,17 +3,63 @@ detect_relations: true
 User:
   actAs: [Timestampable]
   columns:
-    username: string
-    password: string
-    first_name: string
-    last_name:  string
+    username: string(255)
+    password: string(255)
+    email:    string(255)
+    url:      string(255)
+    first_name: string(255)
+    last_name:  string(255)
   
-Settings:
+Meta:
+  actAs:
+    Sluggable:
+      fields: [name]
+      name: slug
+      type: string
+      builder: [rtUtils, urlize]
   columns:
-    blog_name: string
-    max_post:   integer
+    name:   string(255)
+    slug:   string(255)
+    type:   string(255)
+    description:  string(255)
+    count:  integer # the count of the post
+    list_order:
+      type: integer(4)
+      default: 0
+  relations:
+    Contents:
+      class: Content
+      local: meta_id
+      foreign: content_id
+      refClass: ContentMeta
+
+
+ContentMeta:
+  tableName: relation
+  columns:
+    meta_id:  integer
+    content_id: integer
+
+Comment:
+  columns:
+    content_id: integer
+    author:     string(100)
+    email:      string(100)
+    url:        string(255)
+    ip:         string(50)
+    text:       string
+    type:       string(100)
+    status:     string(50)
+    parent_id:  integer
+
   
-Post:
+Option:
+  tableName: options
+  columns:
+    name:   string(255)
+    value:  string(255)
+  
+Content:
   actAs:
     Timestampable:
     Sluggable:
@@ -23,24 +69,33 @@ Post:
       length: 255   # defaults to null. clob doesn't require a length
       builder: [rtUtils, urlize]  # Doctrine urlize have problem with chinese
   columns:
-    user_id: integer
-    catagory_id: integer
+    author_id: integer
+    title: string(255)
+    slug: string(255)
     type: string  # post, page
-    title: string
-    slug: string
-    format: string
+    status: string(255)
+    password: string(255)
+    allow_ping:
+      type: boolean
+      default: true
+    allow_feed:
+      type: boolean
+      default: true
+    allow_comment:
+      type: boolean
+      default: true      
+    comment_count: integer
+    format:   string
     raw_content: string
-    content: string
+    text:   string  # output html
+    list_order:
+      type: integer(4)
+      default: 0
+    extra:  object  # extra properties use php serialization, array is the default
+  relations:
+    Metas:
+      class: Meta
+      local: content_id
+      foreign: meta_id
+      refClass: ContentMeta
     
-Catagory:
-  actAs:
-    Timestampable:
-    Sluggable:
-      fields: [name]
-      name: slug
-      type: string
-      lenght: 255
-      builder: [rtUtils, urlize]
-  columns:
-    name: string
-    slug: string

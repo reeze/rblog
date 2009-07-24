@@ -10,7 +10,7 @@
 	<div id="wrapper">
 		<div id="main">
 			<div id="header">
-				<h1>Reeze | 关注于 Web PHP Erlang Mac & 一些闲言杂语</h1>
+				<h1>Administration</h1>
 				<?php include_partial('layout/navor');?>
 			</div>
 			<?php

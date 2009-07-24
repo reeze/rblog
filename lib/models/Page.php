@@ -1,10 +1,10 @@
 <?php
 
-class Post extends Content
+class Page extends Content
 {
 	public function preSave($event)
 	{
-		$this->_set('type', self::POST);
+		$this->_set('type', self::PAGE);
 		
 		parent::preSave($event);
 	}

@@ -1,29 +1,29 @@
 homepage:
   url: /
-  params: {controller: post, action: index}
+  params: {controller: blog, action: index}
 
 # View the post
 view_post:
   url: /:year/:month/:day/:slug
-  params: {controller: post, action: show}
+  params: {controller: blog, action: show}
 
 # view by catagory
 catagory:
-  url: /catagory/:slug
+  url: /catagories/:slug
   params: {controller: catagory, action: show}
 
 # view by tag
 tag:
-  url: /tag/:slug
+  url: /tags/:slug
   params: {controller: tag, action: show}
 
 archive:
   url: /archive
-  params: {controller: post, action: archive}
+  params: {controller: blog, action: archive}
 
 feed:
   url: /feed.:format
-  params: {controller: post, action: index, format: rss}
+  params: {controller: blog, action: index, format: rss}
   
 page:
   url: /page/:slug

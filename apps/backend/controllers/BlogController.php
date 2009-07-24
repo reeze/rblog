@@ -4,12 +4,12 @@ class BlogController extends rtController
 {
 	public function indexAction()
 	{
-		$this->setTitle('Blog Index');
+		$this->setTitle('Administration');
 		
 		$this->posts = Doctrine_Query::create()
     					->from('Post p')->orderBy('p.created_at DESC')->fetchArray();
 
-    	// respond formats
+    // respond formats
 		$this->respond(
 			array(
 				'rss' => array('layout' => false)
@@ -19,7 +19,7 @@ class BlogController extends rtController
 	
 	public function newAction(rtRequest $request)
 	{
-        $this->catagories = Catagory::getAll();
+    $this->catagories = Catagory::getAll();
 
 		if($request->getMethod() == rtRequest::POST)
 		{
@@ -45,6 +45,7 @@ class BlogController extends rtController
 	
 	public function showAction(rtRequest $request)
 	{
-		$this->post = Post::findBySlug($request->getParameter('slug'));
+		$table = Doctrine::getTable('Content');
+		$this->post = $table->findOneBySlug($request->getParameter('slug'));
 	}
 }

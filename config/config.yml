@@ -13,8 +13,9 @@ middlewares:
   - CommonMiddleware
   - ToolBarMiddleware
   
-  
-default_helpers: [Asset, Url, View]
+
+# Tag helper is required by Url and Asset helper
+default_helpers: [Tag, Asset, Url, View]
   
 views:
   - rtView
