@@ -3,7 +3,7 @@ homepage:
   params: {controller: post, action: index}
 
 # View the post
-view_post:
+show_post:
   url: /:year/:month/:day/:slug
   params: {controller: post, action: show}
 

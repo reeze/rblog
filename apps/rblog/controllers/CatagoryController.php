@@ -2,7 +2,7 @@
 class CatagoryController extends rtController
 {
 	/**
-	 * Show the posts under the give catagory
+	 * view the posts under the give catagory
 	 *
 	 * @param rtRequest $request
 	 */

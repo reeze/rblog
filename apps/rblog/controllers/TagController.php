@@ -11,7 +11,7 @@ class TagController extends rtController
 	}
 	
 	/**
-	 * Show the posts tagged with the tag
+	 * view the posts tagged with the tag
 	 *
 	 * @param rtRequest $request
 	 */

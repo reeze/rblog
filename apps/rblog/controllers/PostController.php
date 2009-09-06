@@ -15,27 +15,6 @@ class PostController extends rtController
 				'rss' => array('layout' => false)
 			));
 	}
-
-	
-	public function newAction(rtRequest $request)
-	{
-        $this->catagories = Catagory::getAll();
-
-		if($request->getMethod() == rtRequest::POST)
-		{
-			$post = new Post();
-			$post->title = $request->getParameter('title');
-			$post->content = $request->getParameter('content');
-            $post->catagory_id = $request->getParameter('catagory_id');
-
-			if($post->isValid())
-			{
-				$post->save();
-				$this->setFlash('notice', '成功发布博文:)');
-				$this->redirect('blog/index');
-			}
-		}
-	}
 	
 	public function archiveAction()
 	{

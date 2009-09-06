@@ -1,21 +1,26 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8" ?>' ?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-  <title>MF-PHP</title>
-  <link rel="alternate" href="http://www.doctrine-project.org/blog"></link>
-  <id>http://www.doctrine-project.org/blog</id>
-  <updated>2009-06-21T01:05:00Z</updated>
-<?php foreach ($posts as $post): ?>
-<entry>
-  <title><?php echo $post['title'] ?></title>
-  <link rel="alternate" href="<?php echo url_for('@homepage'); ?>"></link>
-  <updated><?php echo $post['created_at'] ?></updated>
-  <author>
-    <name>reeze</name>
-    <email>reeze.xia@gmail.com</email>
-  </author>
-  <id><?php echo url_for('@homepage'); ?></id>
-  <summary type="text"><?php echo $post['content'] ?></summary>
-  <content type="html"><![CDATA[<?php echo $post['content'] ?>]]></content>
-</entry>
-<?php endforeach; ?>
-</feed>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+    <channel>
+        <title>reeze</title>
+        <link><?php echo url_for('@homepage', true); ?></link>
+        <description/>
+        <language>en</language>
+        <copyright>Copyright 2009</copyright>
+        <generator>http://www.sixapart.com/movabletype/</generator>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <admin:errorReportsTo rdf:resource="mailto:dbanotes@gmail.com"/>
+        <?php foreach ($posts as $post): ?>
+        <item>
+            <title><?php echo $post['title'] ?></title>
+            <description><![CDATA[<?php echo $post['title'] ?>]]></description>
+            <link><?php echo url_for($post['title'], "@show_post?year=2009&month=10&day=15&slug={$post['slug']}", true); ?> />
+              <summary type="html"><![CDATA[<?php echo $post['text'] ?></link>
+            <author>reeze.xia@gmail.com</author>
+            <guid>    <?php echo url_for($post['title'], "@show_post?year=2009&month=10&day=15&slug={$post['slug']}", true); ?> />
+                  <summary type="html"><![CDATA[<?php echo $post['text'] ?></guid>
+            <content:encoded><![CDATA[<?php echo $post['text'] ?>]]></content:encoded>
+            <pubDate><?php echo $post['created_at'] ?></pubDate>
+        </item>
+        <?php endforeach; ?>
+    </channel>
+</rss>
